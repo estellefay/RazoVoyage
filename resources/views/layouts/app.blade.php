@@ -178,10 +178,7 @@
                   <form action="" method="post" class="d-block d-lg-flex">
                     <div class="fields d-block d-lg-flex">
                       <div class="textfield-search one-third one-third-1"><input type="text" class="form-control" placeholder="Search Location"></div>
-
-
                       <div class="check-out one-third one-third-1"><input type="text" id="start_date" class="form-control" placeholder="Check-out date"></div>
-
                       <div class="select-wrap one-third one-third-1">
                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                         <select name="" id="" class="form-control">
@@ -204,7 +201,7 @@
       </div>
     </div>
 
-@yield('content');
+@yield('content')
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
