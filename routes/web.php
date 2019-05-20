@@ -21,26 +21,31 @@ Route::get('/', function () {
     ";
 });
 
+// Route::get('voyages', function () {
+//     return "Ceci est la page qui affichera tous les voyages";
+// });
 
-Route::get('voyages', function () {
-    return "Ceci est la page qui affichera tous les voyages";
-});
-
-Route::get('voyages/{id_voyage}', function ($id_voyage) {
-    return "Ceci est la page qui affichera le detail d’un voyage identifié par $id_voyage";
-});
+Route::get('voyages/{id_voyage?}', function ($id_voyage = null) {
+    if (isset($id_voyage)) {
+        return "Ceci est la page qui affichera le detail d’un voyage identifié par $id_voyage";
+    } else {
+        return "Ceci est la page qui affichera tous les voyages";
+    }
+    
+})->where('id_voyage', '[0-9]+');
 
 Route::get('a_propos', function () {
     return "Ceci est la page qui affichera les informations concernant l’entreprise";
 });
 
 
-Route::get('admin/voyages', function () {
-    return "Ceci est la page voyages de la console 
-    d’administration";
-});
 
-Route::get('admin/users', function () {
-    return "Ceci est la page users de la console 
-    d’administration";
-});
+Route::group(['prefix' => 'admin'], function(){ 
+    Route::get('voyages', function () {
+        return "Ceci est la page voyages de la console d’administration";
+    });
+    
+    Route::get('users', function () {
+        return "Ceci est la page users de la console d’administration";
+    });
+}); 
