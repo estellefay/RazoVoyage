@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content') 
+@if (isset($message))
+{{$message}}
+@else
+
+@endif
 
     <section class="ftco-section-2">
       <div class="container-fluid d-flex">

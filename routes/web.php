@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function()
+{
     return view('index');
 });
 
@@ -23,12 +24,11 @@ Route::get('/', function () {
 // });
 
 Route::get('voyage/{id_voyage}', function ($id_voyage) {
+    dd($id_voyage);
         return view('show', ['id_voyage' => $id_voyage]);
 })->where('id_voyage', '[0-9]+');
 
-Route::get('a_propos', function () {
-    return view('about');
-})->name('about');
+Route::get('a_propos', 'StaticPageController@numberRandom');
 
 
 
