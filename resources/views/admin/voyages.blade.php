@@ -114,6 +114,8 @@
         font-size: 95%;
     }    
 </style>
+
+
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
@@ -121,7 +123,7 @@
                 <div class="col-sm-6"><h2>Voyages <b>Details</b></h2></div>
                 <div class="col-sm-6">
                     <div class="col-sm-4">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>						
+                            <a href=" {{route('voyages.create') }}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>						
                         </div>
                     <div class="search-box">
                         <i class="material-icons">&#xE8B6;</i>
@@ -130,84 +132,32 @@
                 </div>
             </div>
         </div>
+
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Name <i class="fa fa-sort"></i></th>
-                    <th>Address</th>
-                    <th>City <i class="fa fa-sort"></i></th>
-                    <th>Pin Code</th>
-                    <th>Country <i class="fa fa-sort"></i></th>
-                    <th>Actions</th>
+                    <th>Titre <i class="fa fa-sort"></i></th>
+                    <th>destination</th>
+                    <th>description <i class="fa fa-sort"></i></th>
+                    <th>prix</th>
+                    <th>image <i class="fa fa-sort"></i></th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($voyages as $voyage)
                 <tr>
-                    <td>1</td>
-                    <td>Thomas Hardy</td>
-                    <td>89 Chiaroscuro Rd.</td>
-                    <td>Portland</td>
-                    <td>97219</td>
-                    <td>USA</td>
+                    <td>{{$voyage->titre}}</td>
+                    <td>{{$voyage->destination}}</td>
+                    <td>{{$voyage->description}}</td>
+                    <td>{{$voyage->prix}}</td>
+                    <td>{{$voyage->image}}</td>
                     <td>
-                        <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                        <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        <a href="{{route('voyages.show', ['id' => $voyage->id]) }}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                        <a href="{{route('voyages.edit', ['id' => $voyage->id]) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                        <a href="" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Maria Anders</td>
-                    <td>Obere Str. 57</td>
-                    <td>Berlin</td>
-                    <td>12209</td>
-                    <td>Germany</td>
-                    <td>
-                        <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                        <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Fran Wilson</td>
-                    <td>C/ Araquil, 67</td>
-                    <td>Madrid</td>
-                    <td>28023</td>
-                    <td>Spain</td>
-                    <td>
-                        <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                        <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Dominique Perrier</td>
-                    <td>25, rue Lauriston</td>
-                    <td>Paris</td>
-                    <td>75016</td>
-                    <td>France</td>
-                    <td>
-                        <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                        <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Martin Blank</td>
-                    <td>Via Monte Bianco 34</td>
-                    <td>Turin</td>
-                    <td>10100</td>
-                    <td>Italy</td>
-                    <td>
-                        <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                        <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                    </td>
-                </tr>        
+                @endforeach        
             </tbody>
         </table>
         <div class="clearfix">

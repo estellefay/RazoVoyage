@@ -11,6 +11,6 @@ $factory->define(Voyage::class, function (Faker $faker) {
         'destination' => $faker->country,
         'description' => $faker->text($maxNbChars = 200),
         'prix' => $faker->randomDigitNotNull,
-        'image' => $faker->imageUrl($width = 640, $height = 480) 
+        'image' => $faker->imageUrl($width = 640, $height = 480, 'city') 
     ];
 });

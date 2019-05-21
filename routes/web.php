@@ -33,9 +33,8 @@ Route::get('a_propos', 'StaticPageController@numberRandom');
 
 
 Route::group(['prefix' => 'admin'], function(){ 
-    Route::get('voyages', function () {
-        return view('admin.voyages');
-    });
+    Route::resource('voyages', 'VoyageController');
+    //Route::get('adminShowVoyage', 'VoyageController@show');
     
     Route::get('users', function () {
         return view('admin.users');
