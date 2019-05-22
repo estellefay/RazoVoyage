@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Voyage;
 use Illuminate\Http\Request;
 
@@ -38,6 +39,19 @@ class VoyageController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $validator = Validator::make($request->all(), [
+            'titre' => 'required|max:75',
+            'description' => 'required'
+        ]);
+
+    
+
+        if ($validator->fails()) {
+           return back()->withErrors($validator)->withInput();
+        }
+
         $voyage = new Voyage;
         $voyage->titre = $request->titre;
         $voyage->description = $request->description;
@@ -45,9 +59,7 @@ class VoyageController extends Controller
         $voyage->prix = $request->prix;
         $voyage->image = $request->image;
         $voyage->save();
-        $voyages = Voyage::all();
-        return view('admin.voyages', ['voyages' => $voyages]);
-        // crée objet affecter valeur envoyer en bdd
+        return redirect()->route('voyages.index')->with(["status" => "voyage enregistré"]);
     }
 
     /**
@@ -84,16 +96,14 @@ class VoyageController extends Controller
      */
     public function update(Request $request, Voyage $voyage)
     {
-        // $voyage->titre = $request->titre;
-        // $voyage->description = $request->description;
-        // $voyage->destination = $request->destination;
-        // $voyage->prix = $request->prix;
-        // $voyage->image = $request->image;
-        // $voyage->save();
+        $voyage->titre = $request->titre;
+        $voyage->description = $request->description;
+        $voyage->destination = $request->destination;
+        $voyage->prix = $request->prix;
+        $voyage->image = $request->image;
+        $voyage->save();
+        return redirect()->route('voyages.index')->with(["status" => "voyage modifié"]);
 
-        // dd($voyage);
-        // $voyages = Voyage::all();
-        // return view('admin.voyages', ['voyages' => $voyages]);
     }
 
     /**
@@ -102,8 +112,12 @@ class VoyageController extends Controller
      * @param  \App\Voyage  $voyage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Voyage $voyage)
+    public function destroy($id)
     {
         //
+        $voyage = Voyage::find($id);
+        $voyage->delete();
+        return redirect()->route('voyages.index')->with(["status" => "voyage Suprimer"]);
+
     }
 }

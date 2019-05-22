@@ -2,8 +2,9 @@
 
 @section('content') 
 <h1>Hello world</h1>
-<form action="{{route('voyages.update') }}" method="update">
+<form action="{{route('voyages.update', ['voyage' => $voyage->id]) }}" method="POST">
     @csrf
+    @method("PATCH") 
 <input type="text" name="titre" placeholder="titre" value="{{$voyage->titre}}">
     <input type="text" name="destination" placeholder="destination" value="{{$voyage->destination}}">
     <input type="text" name="description" placeholder="description" value="{{$voyage->description}}">

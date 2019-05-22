@@ -154,7 +154,14 @@
                     <td>
                         <a href="{{route('voyages.show', ['id' => $voyage->id]) }}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
                         <a href="{{route('voyages.edit', ['id' => $voyage->id]) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                        <a href="" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        </div>   
+                            <form action="{{route('voyages.destroy', ['id' => $voyage->id]) }}" method="post">
+                                @csrf
+                                @method("DELETE")
+                                
+                                <i class="material-icons"><input type="submit" value="&#xE872;"></i>
+                            </form>  
+                        </div>
                     </td>
                 </tr>
                 @endforeach        
