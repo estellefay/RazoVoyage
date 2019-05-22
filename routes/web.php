@@ -18,7 +18,6 @@ Route::get('/', function()
 
 
 
-
 // Route::get('voyages', function () {
 //     return "Ceci est la page qui affichera tous les voyages";
 // });
@@ -39,3 +38,9 @@ Route::group(['prefix' => 'admin'], function(){
         return view('admin.users');
     });
 }); 
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
